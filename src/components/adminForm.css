@@ -1,0 +1,94 @@
+/* adminForm.css */
+
+.admin-form {
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #bbb;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.back-btn:hover {
+  color: white;
+}
+
+.admin-form h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #42a5f5;
+}
+
+.admin-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="email"],
+.admin-form input[type="password"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  width: 100%;
+  max-width: 400px;
+  font-size: 14px;
+  background-color: #2b2b2b;
+  color: white;
+  box-shadow: 0 0 0 1px #444;
+  transition: box-shadow 0.3s;
+}
+
+.admin-form input:focus {
+  box-shadow: 0 0 5px #42a5f5;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #ccc;
+  max-width: 400px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.checkbox-group a {
+  color: #42a5f5;
+  text-decoration: none;
+}
+
+.checkbox-group a:hover {
+  text-decoration: underline;
+}
+
+.submit-btn {
+  padding: 10px 20px;
+  background-color: #42a5f5;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 400px;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #1e88e5;
+}

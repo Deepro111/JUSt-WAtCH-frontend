@@ -1,0 +1,44 @@
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 60vh;
+  padding-top: 100px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+/* Make sure text is above overlay */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  max-width: 700px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.cta-btn {
+  padding: 15px 30px;
+  font-size: 18px;
+  /* font-weight:500; */
+  background-color: red;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
