@@ -1,5 +1,5 @@
 import React from 'react';
-import './Features.css';
+import './features.css';
 import iconWatch from '../assets/watch-anywhere.png';
 import iconCancel from '../assets/cancel-anytime.png';
 import iconDownload from '../assets/download-offline.png';
