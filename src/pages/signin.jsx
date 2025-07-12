@@ -17,16 +17,24 @@ const Login = () => {
     const [username, setUsername] = useState('');
 
     const onSubmitHandler = async (e) => {
+    e.preventDefault(); // 🚫 Prevent form reload
 
-        const {data} = await axios.post('https://movieapi-2-m2ws.onrender.com/v1/auth/token', {username, password})
-        if(data.username){
-            navigate('/dashboard')
-        }
-        else{
-            console.log(data.message)
-        }
+    try {
+        const { data } = await axios.post(
+            'https://movieapi-2-m2ws.onrender.com/v1/auth/token',
+            { username, password }
+        );
 
+        if (data?.username) {
+            
+            navigate('/dashboard');
+        } else {
+            console.log(data.message || 'Login failed');
+        }
+    } catch (error) {
+        console.error('Login error:', error.response?.data || error.message);
     }
+};
 
     return (
         <div className="login-page">
