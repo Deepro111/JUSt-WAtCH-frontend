@@ -22,11 +22,17 @@ const Login = () => {
     try {
         const { data } = await axios.post(
             'https://movieapi-2-m2ws.onrender.com/v1/auth/token',
-            { username, password }
+            { username, password },
+            {
+                headers: {
+                'Content-Type': 'application/json'
+                }
+            }
         );
 
         if (data?.username) {
-            
+
+            console.log(data.username);
             navigate('/dashboard');
         } else {
             console.log(data.message || 'Login failed');
@@ -49,7 +55,7 @@ const Login = () => {
 
                     <div className="divider">or</div>
 
-                    <form  onClick={onSubmitHandler} className="login-form">
+                    <form  onSubmit={onSubmitHandler} className="login-form">
                         <input value={username} onChange={e => setUsername(e.target.value)} type="text" placeholder="usernamer" required />
                         <input value={password} onChange={e => setPassword(e.target.value)} type="password" placeholder="Password" required />
                         <button type="submit" className="continue-btn">Continue</button>

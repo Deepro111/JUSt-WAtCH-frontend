@@ -4,5 +4,17 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: process.env.VITE_BASE_PATH || "just-watch-frontend"
+  build: {
+    outDir: 'dist',
+  },
+  server: {
+    open: true,
+    proxy: {
+      '/api': {
+        target: 'https://movieapi-2-m2ws.onrender.com',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, '')
+      }
+    }
+  },
 })

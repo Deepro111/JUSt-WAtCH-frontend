@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import googleIcon from '../assets/google-icon.png';
 import './viewerForm.css';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 const ViewerForm = ({ onBack }) => {
   const [formData, setFormData] = useState({
@@ -10,16 +13,44 @@ const ViewerForm = ({ onBack }) => {
     age: '',
     password: ''
   });
+  
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate =useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Viewer Sign-Up Data:', formData);
-    // handle form submit logic here
-  };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const payload = {
+      username, // full name
+      email,
+      password,
+    };
+
+    const { data } = await axios.post(
+      'https://movieapi-2-m2ws.onrender.com/v1/auth/signup', 
+      payload,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    if (data.username) {
+      console.log(data.username + ' signup successful');
+      navigate('/dashboard');
+    } else {
+      console.log('Signup failed');
+    }
+  } catch (error) {
+    console.error('Signup error:', error.response?.data || error.message);
+  }
+};
 
   return (
     <div className="viewer-form">
@@ -39,40 +70,34 @@ const ViewerForm = ({ onBack }) => {
           type="text"
           name="name"
           placeholder="Full Name"
-          value={formData.name}
-          onChange={handleChange}
+          value={username}
+          onChange={e => setUsername(e.target.value)}
           required
         />
         <input
           type="text"
           name="phone"
           placeholder="Phone Number"
-          value={formData.phone}
-          onChange={handleChange}
-          required
         />
         <input
           type="email"
           name="email"
           placeholder="Email Address"
-          value={formData.email}
-          onChange={handleChange}
+          value={email}
+          onChange={e => setEmail(e.target.value)}
           required
         />
         <input
           type="number"
           name="age"
-          placeholder="Age"
-          value={formData.age}
-          onChange={handleChange}
-          required
+        // required
         />
         <input
           type="password"
           name="password"
           placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
+          value={password}
+          onChange={e => setPassword(e.target.value)}
           required
         />
         <button type="submit" className="submit-btn">Sign Up</button>
