@@ -2,10 +2,31 @@ import React, { useState } from 'react';
 import './signin.css';
 import SignUpModal from '../components/SignUpModal';
 import googleIcon from '../assets/google-icon.png';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
 
+
+    const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
+
+    const onSubmitHandler = async (e) => {
+
+        const {data} = await axios.post('https://movieapi-2-m2ws.onrender.com/v1/auth/token', {username, password})
+        if(data.success){
+            navigate('/dashboard')
+        }
+        else{
+            console.log(data.message)
+        }
+
+    }
 
     return (
         <div className="login-page">
@@ -20,9 +41,9 @@ const Login = () => {
 
                     <div className="divider">or</div>
 
-                    <form className="login-form">
-                        <input type="text" placeholder="Email or phone number" required />
-                        <input type="password" placeholder="Password" required />
+                    <form  onClick={onSubmitHandler} className="login-form">
+                        <input value={username} onChange={e => setUsername(e.target.value)} type="text" placeholder="usernamer" required />
+                        <input value={password} onChange={e => setPassword(e.target.value)} type="password" placeholder="Password" required />
                         <button type="submit" className="continue-btn">Continue</button>
                     </form>
                 </div>
