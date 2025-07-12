@@ -19,7 +19,7 @@ const Login = () => {
     const onSubmitHandler = async (e) => {
 
         const {data} = await axios.post('https://movieapi-2-m2ws.onrender.com/v1/auth/token', {username, password})
-        if(data.success){
+        if(data.username){
             navigate('/dashboard')
         }
         else{
